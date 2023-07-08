@@ -79,7 +79,7 @@ class View {
             $card.style.zIndex = String(i);
             $card.style.bottom = `${i * 1}px`;
             $card.style.left = `${i * 0.3}px`;
-            $card.innerHTML = `${i}`;
+            $card.innerHTML = `<p>残り${i}枚</p>`;
             $stockPile.appendChild($card);
         }
         this.#stockBlock.appendChild($stockPile);

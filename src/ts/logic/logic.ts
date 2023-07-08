@@ -47,6 +47,10 @@ class Logic {
     getStockSize() {
         return this.#stock.size;
     }
+
+    getLead() {
+        return this.#lead.getLead();
+    }
 }
 
 export default Logic;

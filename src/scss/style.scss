@@ -1,3 +1,6 @@
+body {
+    background-color: beige;
+}
 .layout {
     width: 100vw;
     display: flex;
@@ -7,7 +10,7 @@
         margin: 5px;
         .card {
             position: relative;
-            background-color: beige;
+            background-color: white;
         }
         .card:nth-child(n + 2) {
             margin: -50px 0 0 0;
@@ -15,18 +18,22 @@
     }
 }
 
+.play-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
 .stock {
     height: 120px;
     width: 120px;
-    margin-top: 50px;
-    margin-left: 50px;
+    margin-left: 0 50px 0;
     border: 1px solid #000;
     border-radius: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    // padding: 5px;
     background-color: khaki;
     .stock-pile {
         height: 100px;
@@ -38,6 +45,25 @@
         background: white;
         border-width: 1px 1px 0.9px 0.5px;
         border-style: solid;
+    }
+}
+
+.lead {
+    height: 120px;
+    width: 120px;
+    margin: 0 50px 0;
+    border: 1px solid #000;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: khaki;
+    .lead-pile {
+        height: 100px;
+        width: 80px;
+    }
+    .card {
+        background: #fff;
     }
 }
 

@@ -10,8 +10,7 @@ class Lead {
         return;
     }
     getLead() {
-        // TODO
-        return;
+        return this.#cards[this.#cards.length - 1];
     }
 }
 

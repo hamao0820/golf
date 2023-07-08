@@ -21,6 +21,10 @@ class Model {
     getStockSize() {
         return this.#logic.getStockSize();
     }
+
+    getLead() {
+        return this.#logic.getLead();
+    }
 }
 
 export default Model;

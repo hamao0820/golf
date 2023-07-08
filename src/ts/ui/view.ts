@@ -21,13 +21,18 @@ class View {
         this.#leadBlock = document.createElement('div');
         this.#layoutBlock.classList.add('layout');
         this.#stockBlock.classList.add('stock');
+        this.#leadBlock.classList.add('lead');
         this.#gameBlock.appendChild(this.#layoutBlock);
-        this.#gameBlock.appendChild(this.#stockBlock);
-        this.#gameBlock.appendChild(this.#leadBlock);
+        const $playArea = document.createElement('div');
+        $playArea.classList.add('play-area');
+        $playArea.appendChild(this.#stockBlock);
+        $playArea.appendChild(this.#leadBlock);
+        this.#gameBlock.appendChild($playArea);
         document.body.appendChild(this.#gameBlock);
 
         this.displayLayout();
         this.displayStock();
+        this.displayLead();
     }
 
     private createCardFrame(): HTMLDivElement {
@@ -78,6 +83,15 @@ class View {
             $stockPile.appendChild($card);
         }
         this.#stockBlock.appendChild($stockPile);
+    }
+
+    private displayLead() {
+        const $leadPile = document.createElement('div');
+        $leadPile.classList.add('lead-pile');
+        const lead = this.#model.getLead();
+        const $card = this.createFaceUpCard(lead);
+        $leadPile.appendChild($card);
+        this.#leadBlock.appendChild($leadPile);
     }
 }
 

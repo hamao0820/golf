@@ -12,8 +12,8 @@ class View {
     #lead: HTMLElement;
 
     constructor() {
-        this.#controller = new Controller();
         this.#model = new Model();
+        this.#controller = new Controller(this, this.#model);
 
         this.#game = document.createElement('div');
         this.#layout = document.createElement('div');

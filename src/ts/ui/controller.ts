@@ -9,9 +9,16 @@ class Controller {
         this.#model = model;
     }
 
-    stockClickHandler() {
+    handleClickStock() {
         this.#model.drawCardFromStock();
         this.#view.update();
+    }
+
+    handleClickLayout(column: number) {
+        if (this.#model.canTake(column)) {
+            this.#model.takeCardFromLayout(column);
+            this.#view.update();
+        }
     }
 }
 

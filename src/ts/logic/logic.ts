@@ -4,6 +4,7 @@ import Layout from '../tools/layout';
 import Lead from '../tools/lead';
 import Stock from '../tools/stock';
 import View from '../ui/view';
+import Judger from './judger';
 
 class Logic {
     #deck: Deck;
@@ -52,8 +53,16 @@ class Logic {
         return this.#lead.getLead();
     }
 
-    drawCardFromStock(){
-        this.#lead.addLeads(this.#stock.drawCard())
+    drawCardFromStock() {
+        this.#lead.addLeads(this.#stock.drawCard());
+    }
+
+    canTake(col: number) {
+        return this.#layout.canTake(col) && Judger.check(this.#lead, this.#layout.getLastCard(col));
+    }
+
+    takeCardFromLayout(col: number) {
+        this.#lead.addLeads(this.#layout.takeCard(col));
     }
 }
 

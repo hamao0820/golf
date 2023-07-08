@@ -29,6 +29,14 @@ class Model {
     drawCardFromStock() {
         this.#logic.drawCardFromStock();
     }
+
+    takeCardFromLayout(col: number) {
+        this.#logic.takeCardFromLayout(col);
+    }
+
+    canTake(col: number) {
+        return this.#logic.canTake(col);
+    }
 }
 
 export default Model;

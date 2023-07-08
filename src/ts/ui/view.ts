@@ -50,12 +50,13 @@ class View {
 
     private displayLayout() {
         const layout = this.#model.getLayout();
-        layout.forEach((column) => {
+        layout.forEach((column, i) => {
             const $column = document.createElement('div');
             $column.classList.add('column');
-            column.cards.forEach((card, i) => {
+            column.cards.forEach((card, j) => {
                 const $card = this.createFaceUpCard(card);
-                $card.style.zIndex = String(i);
+                $card.style.zIndex = String(j);
+                if (j === column.size - 1) $card.addEventListener('click', () => this.#controller.handleClickLayout(i));
                 $column.appendChild($card);
             });
             this.#layoutBlock.appendChild($column);
@@ -72,7 +73,7 @@ class View {
             $card.style.left = `${i * 0.3}px`;
             $card.innerHTML = `<p>残り${i + 1}枚</p>`;
             if (i === this.#model.getStockSize() - 1) {
-                $card.addEventListener('click', () => this.#controller.stockClickHandler());
+                $card.addEventListener('click', () => this.#controller.handleClickStock(), { once: true });
             }
             $stockPile.appendChild($card);
         }

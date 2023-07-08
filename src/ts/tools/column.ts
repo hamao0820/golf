@@ -11,15 +11,23 @@ class Column {
     }
 
     takeCard() {
-        // TODO
-        return;
+        if (!this.canTake) throw Error;
+        const card = this.#cards.pop();
+        if (!card) throw Error;
+        return card;
     }
+
     get size() {
         return this.#cards.length;
     }
+
     canTake() {
-        // TODO
-        return;
+        return this.#cards.length >= 1;
+    }
+
+    getLastCard(): Card {
+        if (!this.canTake) throw Error;
+        return this.cards[this.#cards.length - 1];
     }
 }
 

@@ -1,8 +1,9 @@
-import View from '../ui/view';
+import Logic from '../logic/logic';
 
 class Main {
     constructor() {
-        new View();
+        const logic = new Logic()
+        logic.execute();
     }
 }
 

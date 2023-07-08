@@ -33,7 +33,6 @@ class View {
     }
 
     private createFaceUpCard(card: Card): HTMLDivElement {
-        // TODO
         const $card = this.createCardFrame();
         $card.classList.add('face-up');
         const suitEntityRef =
@@ -44,7 +43,8 @@ class View {
                 : card.suit === 'Hearts'
                 ? '&hearts;'
                 : '&spades;';
-        $card.innerHTML = `<p> ${card.rank} </p><p> ${suitEntityRef} </p>`;
+        const suitColor = card.suit === 'Hearts' || card.suit === 'Diamonds' ? 'red' : '';
+        $card.innerHTML = `<p class="card-rank"> ${card.rank} </p><p style="color:${suitColor}"> ${suitEntityRef} </p>`;
         return $card;
     }
 

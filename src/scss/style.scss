@@ -3,12 +3,12 @@ body {
     user-select: none;
 }
 .layout {
-    width: 100vw;
+    height: 450px;
     display: flex;
     justify-content: space-around;
 
     .column {
-        margin: 5px;
+        margin: 5px 0;
         .card {
             position: relative;
             background-color: white;
@@ -46,7 +46,7 @@ body {
     }
     .card {
         position: absolute;
-        border-width: 1px 1px 0.9px 0.5px;
+        border-width: 1.5px 1.5px 0.9px 0.5px;
         border-style: solid;
         display: flex;
         flex-direction: column;
@@ -87,8 +87,15 @@ body {
     height: 100px;
     width: 80px;
 
-    border: 1px solid #000;
+    border: 1.5px solid #000;
     border-radius: 10%;
 
     text-align: center;
+    p {
+        margin: 5px 3px;
+    }
+    .card-rank {
+        font-size: 1.3rem;
+        font-weight: 800;
+    }
 }

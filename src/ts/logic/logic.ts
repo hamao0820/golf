@@ -51,6 +51,10 @@ class Logic {
     getLead() {
         return this.#lead.getLead();
     }
+
+    drawCardFromStock(){
+        this.#lead.addLeads(this.#stock.drawCard())
+    }
 }
 
 export default Logic;

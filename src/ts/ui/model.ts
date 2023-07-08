@@ -25,6 +25,10 @@ class Model {
     getLead() {
         return this.#logic.getLead();
     }
+
+    drawCardFromStock() {
+        this.#logic.drawCardFromStock();
+    }
 }
 
 export default Model;

@@ -22,13 +22,6 @@ class View {
         this.#layoutBlock.classList.add('layout');
         this.#stockBlock.classList.add('stock');
         this.#leadBlock.classList.add('lead');
-        this.#gameBlock.appendChild(this.#layoutBlock);
-        const $playArea = document.createElement('div');
-        $playArea.classList.add('play-area');
-        $playArea.appendChild(this.#stockBlock);
-        $playArea.appendChild(this.#leadBlock);
-        this.#gameBlock.appendChild($playArea);
-        document.body.appendChild(this.#gameBlock);
 
         this.display();
     }
@@ -55,7 +48,7 @@ class View {
         return $card;
     }
 
-    displayLayout() {
+    private displayLayout() {
         const layout = this.#model.getLayout();
         layout.forEach((column) => {
             const $column = document.createElement('div');
@@ -77,7 +70,10 @@ class View {
             $card.style.zIndex = String(i);
             $card.style.bottom = `${i * 1}px`;
             $card.style.left = `${i * 0.3}px`;
-            $card.innerHTML = `<p>残り${i}枚</p>`;
+            $card.innerHTML = `<p>残り${i + 1}枚</p>`;
+            if (i === this.#model.getStockSize() - 1) {
+                $card.addEventListener('click', () => this.#controller.stockClickHandler());
+            }
             $stockPile.appendChild($card);
         }
         this.#stockBlock.appendChild($stockPile);
@@ -92,10 +88,33 @@ class View {
         this.#leadBlock.appendChild($leadPile);
     }
 
-    display() {
+    private display() {
+        const $playArea = document.createElement('div');
+        $playArea.classList.add('play-area');
+        $playArea.appendChild(this.#stockBlock);
+        $playArea.appendChild(this.#leadBlock);
+        this.#gameBlock.appendChild(this.#layoutBlock);
+        this.#gameBlock.appendChild($playArea);
+        document.body.appendChild(this.#gameBlock);
         this.displayLayout();
         this.displayLead();
         this.displayStock();
+    }
+
+    clear() {
+        document.body.innerHTML = '';
+        this.#gameBlock = document.createElement('div');
+        this.#layoutBlock = document.createElement('div');
+        this.#stockBlock = document.createElement('div');
+        this.#leadBlock = document.createElement('div');
+        this.#layoutBlock.classList.add('layout');
+        this.#stockBlock.classList.add('stock');
+        this.#leadBlock.classList.add('lead');
+    }
+
+    update() {
+        this.clear();
+        this.display();
     }
 }
 

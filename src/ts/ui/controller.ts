@@ -8,6 +8,11 @@ class Controller {
         this.#view = view;
         this.#model = model;
     }
+
+    stockClickHandler() {
+        this.#model.drawCardFromStock();
+        this.#view.update();
+    }
 }
 
 export default Controller;

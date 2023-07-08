@@ -6,7 +6,7 @@ class Lead {
         this.#cards = [card];
     }
     addLeads(card: Card) {
-        // TODO
+        this.#cards.push(card);
         return;
     }
     getLead() {

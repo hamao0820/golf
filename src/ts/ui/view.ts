@@ -30,9 +30,7 @@ class View {
         this.#gameBlock.appendChild($playArea);
         document.body.appendChild(this.#gameBlock);
 
-        this.displayLayout();
-        this.displayStock();
-        this.displayLead();
+        this.display();
     }
 
     private createCardFrame(): HTMLDivElement {
@@ -92,6 +90,12 @@ class View {
         const $card = this.createFaceUpCard(lead);
         $leadPile.appendChild($card);
         this.#leadBlock.appendChild($leadPile);
+    }
+
+    display() {
+        this.displayLayout();
+        this.displayLead();
+        this.displayStock();
     }
 }
 

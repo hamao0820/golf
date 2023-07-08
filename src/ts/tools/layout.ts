@@ -5,13 +5,16 @@ class Layout {
     constructor(columns: Column[]) {
         this.#columns = columns;
     }
-    getSize() {
-        // TODO
-        return;
+    get size() {
+        return this.#columns.map((column) => column.size).reduce((c, p) => c + p, 0);
     }
     takeCard() {
         // TODO
         return;
+    }
+
+    getLayout(): Column[] {
+        return this.#columns;
     }
 }
 

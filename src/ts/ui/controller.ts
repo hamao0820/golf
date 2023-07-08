@@ -8,9 +8,6 @@ class Controller {
         this.#view = view;
         this.#model = model;
     }
-    handleStartButtonClicked() {
-        alert('hello');
-    }
 }
 
 export default Controller;

@@ -31,6 +31,14 @@ class Logic {
         this.start();
         return;
     }
+
+    getLayoutSize() {
+        return this.#layout.size;
+    }
+
+    getLayout() {
+        return this.#layout.getLayout();
+    }
 }
 
 export default Logic;

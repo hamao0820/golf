@@ -6,13 +6,16 @@ class Column {
         this.#cards = cards;
     }
 
+    get cards() {
+        return this.#cards;
+    }
+
     takeCard() {
         // TODO
         return;
     }
-    getSize() {
-        // TODO
-        return;
+    get size() {
+        return this.#cards.length;
     }
     canTake() {
         // TODO

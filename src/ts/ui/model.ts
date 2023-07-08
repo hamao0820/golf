@@ -13,6 +13,14 @@ class Model {
     getLayout() {
         return this.#logic.getLayout();
     }
+
+    getStock() {
+        return this.#logic.getStock();
+    }
+
+    getStockSize() {
+        return this.#logic.getStockSize();
+    }
 }
 
 export default Model;

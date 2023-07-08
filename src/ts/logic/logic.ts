@@ -39,6 +39,14 @@ class Logic {
     getLayout() {
         return this.#layout.getLayout();
     }
+
+    getStock() {
+        return this.#stock.getStock();
+    }
+
+    getStockSize() {
+        return this.#stock.size;
+    }
 }
 
 export default Logic;

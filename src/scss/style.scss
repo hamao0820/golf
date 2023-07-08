@@ -15,6 +15,32 @@
     }
 }
 
+.stock {
+    height: 120px;
+    width: 120px;
+    margin-top: 50px;
+    margin-left: 50px;
+    border: 1px solid #000;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    // padding: 5px;
+    background-color: khaki;
+    .stock-pile {
+        height: 100px;
+        width: 80px;
+        position: relative;
+    }
+    .card {
+        position: absolute;
+        background: white;
+        border-width: 1px 1px 0.9px 0.5px;
+        border-style: solid;
+    }
+}
+
 .card {
     height: 100px;
     width: 80px;

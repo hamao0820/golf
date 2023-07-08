@@ -7,7 +7,7 @@ class Stock {
     }
 
     canDraw(): boolean {
-        return this.getSize() >= 1;
+        return this.size >= 1;
     }
 
     drawCard() {
@@ -17,8 +17,12 @@ class Stock {
         return card;
     }
 
-    getSize() {
+    get size() {
         return this.#cards.length;
+    }
+
+    getStock() {
+        return this.#cards;
     }
 }
 

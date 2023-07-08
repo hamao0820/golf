@@ -20,18 +20,26 @@ class View {
         this.#stockBlock = document.createElement('div');
         this.#leadBlock = document.createElement('div');
         this.#layoutBlock.classList.add('layout');
+        this.#stockBlock.classList.add('stock');
         this.#gameBlock.appendChild(this.#layoutBlock);
         this.#gameBlock.appendChild(this.#stockBlock);
         this.#gameBlock.appendChild(this.#leadBlock);
         document.body.appendChild(this.#gameBlock);
 
         this.displayLayout();
+        this.displayStock();
     }
 
-    private createCard(card: Card): HTMLDivElement {
-        // TODO
+    private createCardFrame(): HTMLDivElement {
         const $card = document.createElement('div');
         $card.classList.add('card');
+        return $card;
+    }
+
+    private createFaceUpCard(card: Card): HTMLDivElement {
+        // TODO
+        const $card = this.createCardFrame();
+        $card.classList.add('face-up');
         const suitEntityRef =
             card.suit === 'Clubs'
                 ? '&clubs;'
@@ -50,12 +58,26 @@ class View {
             const $column = document.createElement('div');
             $column.classList.add('column');
             column.cards.forEach((card, i) => {
-                const $card = this.createCard(card);
+                const $card = this.createFaceUpCard(card);
                 $card.style.zIndex = String(i);
                 $column.appendChild($card);
             });
             this.#layoutBlock.appendChild($column);
         });
+    }
+
+    private displayStock() {
+        const $stockPile = document.createElement('div');
+        $stockPile.classList.add('stock-pile');
+        for (let i = 0; i < this.#model.getStockSize(); i++) {
+            const $card = this.createCardFrame();
+            $card.style.zIndex = String(i);
+            $card.style.bottom = `${i * 1}px`;
+            $card.style.left = `${i * 0.3}px`;
+            $card.innerHTML = `${i}`;
+            $stockPile.appendChild($card);
+        }
+        this.#stockBlock.appendChild($stockPile);
     }
 }
 

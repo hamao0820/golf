@@ -1,0 +1,124 @@
+@startuml GOLF
+
+package "mian" {
+    class Main(){
+        +main(): void
+    }
+}
+
+package "logic" {
+    class Logic {
+        -player: Player
+        -stock: Stock
+        -layout: Layout
+        -lead: Lead
+        -deck: Deck
+        +start(): void
+        +finish(): void
+        +isEnd(): void
+        +restart(): void
+        +processLoop(): void
+    }
+}
+
+package "player" {
+  class Player {
+    +drawCardFromStock(): void
+    +takeCardFromLayout(): void
+  }
+}
+
+package "tools" {
+    ' カード
+    class Card {
+        -number: int
+        -isFaceUp: bool
+        -suit: string
+        +card(number: int, suit: string): void
+        +isFlip(): bool
+        +getNumber(): number
+    }
+    ' 山札
+    class Stock {
+        -cards: Card[]
+        +stock(): void
+        +drawCard(): Card
+        +getSize(): int
+    }
+    ' 列
+    class Column {
+        -cards: Card[]
+        +Column(cards: Card[]): void
+        +takeCard(): Card
+        +getSize(): int
+        +canTake(): bool
+    }
+    ' 場札
+    class Layout {
+        -columns: Column[]
+        +layout(): void
+        +getSize(): int
+        +takeCard(): int
+    }
+    ' 台札
+    class Lead {
+        -cards: Card[]
+        +lead(lead: Card): void
+        +addLeads(): void
+        +getLead(): Card
+    }
+    ' デッキ
+    class Deck {
+        -cards: Card[]
+        +deck(): void
+        +handOutCard(): Card
+    }
+}
+
+package "judgement" {
+    class Judger {
+        +checkWin(): bool
+        +checkLoss(): bool
+        +canTake(): bool
+    }
+}
+
+package "ui" {
+    class Model {
+    }
+    class View {
+        -model: Model
+        -controller: Controller
+        +displayStartScreen(): void
+        +displayGameScreen(): void
+        +displayEndScreen(): void
+        +updateLayout(): void
+        +updateStock(): void
+        +updateLead(): void
+        +update(): void
+        +showMessage(message: string): void
+    }
+    class Controller {
+            -model: Model
+            +handleStartGame(): void
+            +handleRestartGame(): void
+            +handleDrawCardFromStock(): void
+            +handleTakeCardFromLead(columnIndex: int): void
+    }
+}
+
+Deck o-- Card
+Stock o-- Card
+Lead o-- Card
+Column o-- Card
+Layout o-- Column
+Logic o-- player
+Logic o-- Deck
+Logic o-- Stock
+Logic o-- Lead
+Logic o-- Layout
+Controller o-- Model
+View o-- Model
+View o- Controller
+
+@enduml

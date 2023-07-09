@@ -1,8 +1,10 @@
 import Card from '../tools/card';
+import Layout from '../tools/layout';
 import Lead from '../tools/lead';
+import Stock from '../tools/stock';
 
 class Judger {
-    static check(lead: Lead, target: Card) {
+    private static isAdjacent(lead: Lead, target: Card) {
         const leadRank = lead.getLead().rank;
 
         switch (leadRank) {
@@ -46,6 +48,28 @@ class Judger {
                 return target.rank === 'Q';
             }
         }
+    }
+
+    static isEnd(layout: Layout, stock: Stock) {
+        layout.isRemain() || stock.canDraw();
+    }
+
+    static isLose(stock: Stock, layout: Layout, lead: Lead) {
+        return (
+            !stock.canDraw() &&
+            Array(Layout.ColumnNum)
+                .fill(0)
+                .map((_, i) => layout.canTake(i) && Judger.isAdjacent(lead, layout.getLastCard(i)))
+                .every((b) => !b)
+        );
+    }
+
+    static isWin(layout: Layout) {
+        return !layout.isRemain();
+    }
+
+    static canTake(layout: Layout, lead: Lead, col: number) {
+        return layout.canTake(col) && Judger.isAdjacent(lead, layout.getLastCard(col));
     }
 }
 

@@ -19,7 +19,7 @@ class Layout {
         return this.#columns[col].takeCard();
     }
 
-    getLayout(): Column[] {
+    getColumns(): Column[] {
         return this.#columns;
     }
 

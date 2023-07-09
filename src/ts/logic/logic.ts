@@ -49,12 +49,12 @@ class Logic {
         return this.#layout.size;
     }
 
-    getLayout() {
-        return this.#layout.getLayout();
+    getLayoutColumns() {
+        return this.#layout.getColumns();
     }
 
-    getStock() {
-        return this.#stock.getStock();
+    getStockCards() {
+        return this.#stock.getCards();
     }
 
     getStockSize() {

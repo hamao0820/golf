@@ -8,10 +8,10 @@ class View {
 
     #messageDialog: HTMLDialogElement;
 
-    #gameBlock: HTMLElement;
-    #layoutBlock: HTMLElement;
-    #stockBlock: HTMLElement;
-    #leadBlock: HTMLElement;
+    #gameBlock: HTMLDivElement;
+    #layoutBlock: HTMLDivElement;
+    #stockBlock: HTMLDivElement;
+    #leadBlock: HTMLDivElement;
 
     constructor() {
         this.#model = new Model();

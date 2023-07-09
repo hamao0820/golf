@@ -41,6 +41,14 @@ class Model {
     isEnd() {
         return this.#logic.isEnd();
     }
+
+    isWin() {
+        return this.#logic.isWin();
+    }
+
+    isLose() {
+        return this.#logic.isLose();
+    }
 }
 
 export default Model;

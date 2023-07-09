@@ -14,8 +14,8 @@ class Logic {
     constructor() {
         this.#deck = new Deck();
         const columns = Array.from(
-            { length: 5 },
-            () => new Column(Array.from({ length: 7 }, () => this.#deck.handOutCard())),
+            { length: Layout.ColumnNum },
+            () => new Column(Array.from({ length: 2 }, () => this.#deck.handOutCard())),
         );
         this.#layout = new Layout(columns);
         this.#stock = new Stock(Array.from(this.#deck.getCards()));
@@ -67,6 +67,20 @@ class Logic {
 
     isEnd() {
         return !this.#layout.isRemain() || !this.#stock.canDraw();
+    }
+
+    isWin() {
+        return !this.#layout.isRemain();
+    }
+
+    isLose() {
+        return (
+            !this.#stock.canDraw() &&
+            Array(Layout.ColumnNum)
+                .fill(0)
+                .map((_, i) => this.#layout.canTake(i) && Judger.check(this.#lead, this.#layout.getLastCard(i)))
+                .every((b) => !b)
+        );
     }
 }
 

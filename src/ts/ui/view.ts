@@ -92,43 +92,6 @@ class View {
         this.#leadBlock.appendChild($leadPile);
     }
 
-    private display() {
-        const $playArea = document.createElement('div');
-        $playArea.classList.add('play-area');
-        $playArea.appendChild(this.#stockBlock);
-        $playArea.appendChild(this.#leadBlock);
-        this.#gameBlock.appendChild(this.#layoutBlock);
-        this.#gameBlock.appendChild($playArea);
-        document.body.appendChild(this.#gameBlock);
-        this.displayLayout();
-        this.displayLead();
-        this.displayStock();
-        this.displayDialog('終了');
-        if (this.#model.isEnd()) this.openDialog();
-    }
-
-    clear() {
-        document.body.innerHTML = '';
-        this.#gameBlock = document.createElement('div');
-        this.#layoutBlock = document.createElement('div');
-        this.#stockBlock = document.createElement('div');
-        this.#leadBlock = document.createElement('div');
-        this.#messageDialog = document.createElement('dialog');
-        this.#layoutBlock.classList.add('layout');
-        this.#stockBlock.classList.add('stock');
-        this.#leadBlock.classList.add('lead');
-    }
-
-    update() {
-        this.clear();
-        this.display();
-    }
-
-    retry() {
-        this.clear();
-        new View();
-    }
-
     displayDialog(message: string) {
         const $container = document.createElement('div');
         $container.classList.add('dialog-container');
@@ -158,6 +121,51 @@ class View {
 
     closeDialog() {
         this.#messageDialog.close();
+    }
+
+    private display() {
+        const $playArea = document.createElement('div');
+        $playArea.classList.add('play-area');
+        $playArea.appendChild(this.#stockBlock);
+        $playArea.appendChild(this.#leadBlock);
+        this.#gameBlock.appendChild(this.#layoutBlock);
+        this.#gameBlock.appendChild($playArea);
+        document.body.appendChild(this.#gameBlock);
+        this.displayLayout();
+        this.displayLead();
+        this.displayStock();
+        if (this.#model.isWin()) {
+            this.displayDialog('おめでとうございます！!成功です');
+            this.openDialog();
+            return;
+        }
+        if (this.#model.isLose()) {
+            this.displayDialog('残念！！もう一度挑戦してみましょう');
+            this.openDialog();
+            return;
+        }
+    }
+
+    clear() {
+        document.body.innerHTML = '';
+        this.#gameBlock = document.createElement('div');
+        this.#layoutBlock = document.createElement('div');
+        this.#stockBlock = document.createElement('div');
+        this.#leadBlock = document.createElement('div');
+        this.#messageDialog = document.createElement('dialog');
+        this.#layoutBlock.classList.add('layout');
+        this.#stockBlock.classList.add('stock');
+        this.#leadBlock.classList.add('lead');
+    }
+
+    update() {
+        this.clear();
+        this.display();
+    }
+
+    retry() {
+        this.clear();
+        new View();
     }
 }
 

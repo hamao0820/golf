@@ -146,7 +146,7 @@ class View {
         }
     }
 
-    private clear() {
+    clear() {
         document.body.innerHTML = '';
         this.#gameBlock = document.createElement('div');
         this.#layoutBlock = document.createElement('div');
@@ -161,11 +161,6 @@ class View {
     update() {
         this.clear();
         this.display();
-    }
-
-    retry() {
-        this.clear();
-        new View();
     }
 }
 

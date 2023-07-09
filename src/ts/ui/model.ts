@@ -49,6 +49,10 @@ class Model {
     isLose() {
         return this.#logic.isLose();
     }
+
+    retry() {
+        this.#logic.start();
+    }
 }
 
 export default Model;

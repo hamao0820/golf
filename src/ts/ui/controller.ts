@@ -22,7 +22,8 @@ class Controller {
     }
 
     handleClickRetryButton() {
-        this.#view.retry();
+        this.#view.clear();
+        this.#model.retry();
     }
 }
 

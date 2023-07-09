@@ -9,7 +9,7 @@ class Judger {
 
         switch (leadRank) {
             case 'A': {
-                return target.rank === '2';
+                return target.rank === '2' || target.rank === 'K';
             }
             case '2': {
                 return target.rank === 'A' || target.rank === '3';
@@ -45,7 +45,7 @@ class Judger {
                 return target.rank === 'J' || target.rank === 'K';
             }
             case 'K': {
-                return target.rank === 'Q';
+                return target.rank === 'Q' || target.rank === 'A';
             }
         }
     }

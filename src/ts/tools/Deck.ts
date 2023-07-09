@@ -4,7 +4,7 @@ class Deck {
     #cards: Card[];
     constructor() {
         const cards = [];
-        for (let i = 1; i <= 13; i++) {
+        for (let i = 1; i <= Card.cardRankNum; i++) {
             cards.push(new Card(Card.rankMap[i], 'Clubs'));
             cards.push(new Card(Card.rankMap[i], 'Spades'));
             cards.push(new Card(Card.rankMap[i], 'Hearts'));

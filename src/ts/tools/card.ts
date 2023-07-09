@@ -14,6 +14,9 @@ class Card {
         12: 'Q',
         13: 'K',
     };
+    static readonly cardRankNum = 13;
+    static readonly cardRankArr: Rank[] = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    static readonly cardSuitArr: Suit[] = ['Clubs', 'Spades', 'Hearts', 'Diamonds'];
     readonly #rank: Rank;
     readonly #suit: Suit;
     #isFaceUp: boolean;

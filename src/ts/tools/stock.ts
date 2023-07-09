@@ -21,7 +21,7 @@ class Stock {
         return this.#cards.length;
     }
 
-    getStock() {
+    getCards() {
         return this.#cards;
     }
 }

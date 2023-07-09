@@ -11,11 +11,11 @@ class Model {
     }
 
     getLayout() {
-        return this.#logic.getLayout();
+        return this.#logic.getLayoutColumns();
     }
 
     getStock() {
-        return this.#logic.getStock();
+        return this.#logic.getStockCards();
     }
 
     getStockSize() {

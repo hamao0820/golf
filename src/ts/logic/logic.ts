@@ -3,7 +3,7 @@ import Deck from '../tools/deck';
 import Layout from '../tools/layout';
 import Lead from '../tools/lead';
 import Stock from '../tools/stock';
-import View from '../ui/view';
+import View from '../ui/view/view';
 import Judger from './judger';
 
 class Logic {
@@ -49,12 +49,12 @@ class Logic {
         return this.#layout.size;
     }
 
-    getLayout() {
-        return this.#layout.getLayout();
+    getLayoutColumns() {
+        return this.#layout.getColumns();
     }
 
-    getStock() {
-        return this.#stock.getStock();
+    getStockCards() {
+        return this.#stock.getCards();
     }
 
     getStockSize() {

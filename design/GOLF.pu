@@ -13,6 +13,7 @@ package "logic" {
         -lead: Lead
         -deck: Deck
         +start(): void
+        +init(): void
         +excute(): void
         +isEnd(): bool
         +isWin(): bool
@@ -28,7 +29,11 @@ package "logic" {
     }
 
     class Judger {
-        {static} canTake(lead: Lead, target: Card): bool
+        {static} -isAdjacent(lead: Lead, target: Card): bool
+        {static} +canTake(lead: Lead, target: Card, col: int): bool
+        {static} +isEnd(): bool
+        {static} +isWin(): bool
+        {static} +isLose(): bool
     }
 }
 
@@ -50,7 +55,7 @@ package "tools" {
         +stock(): void
         +drawCard(): Card
         +size(): int
-        +getStock: Card[]
+        +getCards: Card[]
     }
     ' 列
     class Column {
@@ -69,7 +74,7 @@ package "tools" {
         +size(): int
         +canTake(): bool
         +takeCard(): Card
-        +getLayout(): Column[]
+        +getColumns(): Column[]
         +getLastCard(): Card
         +isRemain: bool
     }
@@ -104,23 +109,60 @@ package "ui" {
         +isLose(): bool
         +retry(): void
     }
+    abstract AbstractView{
+        -model: Model
+        -controller: Controller
+        +display(): void
+        +clear(): void
+    }
+
+    class LayoutView {
+        -model: Model
+        -controller: Controller
+        +layoutView(): boid
+        +display(): void
+        +clear(): void
+    }
+    class StockView {
+        -model: Model
+        -controller: Controller
+        +stockView(): void
+        +display(): void
+        +clear(): void
+    }
+    class LeadView {
+        -model: Model
+        -controller: Controller
+        +leadView(): void
+        +display(): void
+        +clear(): void
+    }
+
+    class DialogView {
+        -model: Model
+        -controller: Controller
+        +dialogView(): void
+        +display(): void
+        +clear(): void
+        +open(): void
+        +close(): void
+    }
+
+    class CardView {
+        {static} +createCardFrame(): HTMLDivElement
+        {static} +createFaceUpCard(card: Card): HTMLDivElement
+    }
+
     class View {
         -model: Model
         -controller: Controller
-        -messageDialog: HTMLDialogElemnt
         -gameBlock: HTMLDivElement
-        -layoutBlock: HTMLDivElement
-        -stockBlock: HTMLDivElement
-        -leadBlock: HTMLDivElement
+        -dialogView: DialogView
+        -layoutView: LayoutView
+        -stockView: StockView
+        -leadView: leadView
+
         +view(): void
-        -createCardFrame(): HTMLDivElement
-        -createFaceUpCard(card: Card): HTMLDivElement
-        -displayLayout(): void
-        -displayStock(): void
-        -displayLead(): void
-        -displayDialog(message: string)
-        -openDialog(): void
-        -closeDialog(): void
         -display(): void
         +clear(): void
         +update(): void
@@ -148,6 +190,16 @@ Controller o- Model
 Controller o- View
 View o-- Model
 View o- Controller
-Model o- Logic
+AbstractView o- Model
+AbstractView o- Controller
+AbstractView <|-- LayoutView
+AbstractView <|-- StockView
+AbstractView <|-- LeadView
+AbstractView <|-- DialogView
+View o- LayoutView
+View o- StockView
+View o- LeadView
+View o- DialogView
+Model o-- Logic
 
 @enduml

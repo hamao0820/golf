@@ -1,7 +1,7 @@
 import Column from './column';
 
 class Layout {
-    static readonly ColumnNum = 5;
+    static readonly ColumnNum = 7;
     #columns: Column[];
     constructor(columns: Column[]) {
         this.#columns = columns;

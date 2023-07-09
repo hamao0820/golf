@@ -2,8 +2,8 @@ import Logic from '../logic/logic';
 
 class Model {
     #logic: Logic;
-    constructor() {
-        this.#logic = new Logic();
+    constructor(logic: Logic) {
+        this.#logic = logic;
     }
 
     getLayoutSize() {

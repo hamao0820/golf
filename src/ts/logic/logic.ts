@@ -24,8 +24,20 @@ class Logic {
     }
 
     start() {
-        new View();
+        this.init();
+        new View(this);
         return;
+    }
+
+    init() {
+        this.#deck = new Deck();
+        const columns = Array.from(
+            { length: Layout.ColumnNum },
+            () => new Column(Array.from({ length: Column.CardsNum }, () => this.#deck.handOutCard())),
+        );
+        this.#layout = new Layout(columns);
+        this.#stock = new Stock(Array.from(this.#deck.getCards()));
+        this.#lead = new Lead(this.#stock.drawCard());
     }
 
     execute() {
@@ -58,7 +70,7 @@ class Logic {
     }
 
     canTake(col: number) {
-        return this.#layout.canTake(col) && Judger.check(this.#lead, this.#layout.getLastCard(col));
+        return Judger.canTake(this.#layout, this.#lead, col);
     }
 
     takeCardFromLayout(col: number) {
@@ -66,21 +78,15 @@ class Logic {
     }
 
     isEnd() {
-        return !this.#layout.isRemain() || !this.#stock.canDraw();
+        return Judger.isEnd(this.#layout, this.#stock);
     }
 
     isWin() {
-        return !this.#layout.isRemain();
+        return Judger.isWin(this.#layout);
     }
 
     isLose() {
-        return (
-            !this.#stock.canDraw() &&
-            Array(Layout.ColumnNum)
-                .fill(0)
-                .map((_, i) => this.#layout.canTake(i) && Judger.check(this.#lead, this.#layout.getLastCard(i)))
-                .every((b) => !b)
-        );
+        return Judger.isLose(this.#stock, this.#layout, this.#lead);
     }
 }
 

@@ -1,7 +1,7 @@
 import Card from './card';
 
 class Column {
-    static readonly CardsNum = 5;
+    static readonly CardsNum = 7;
     readonly #cards: Card[];
     constructor(cards: Card[]) {
         this.#cards = cards;

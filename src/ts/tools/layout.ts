@@ -26,6 +26,10 @@ class Layout {
     getLastCard(col: number) {
         return this.#columns[col].getLastCard();
     }
+
+    isRemain() {
+        return this.size >= 1;
+    }
 }
 
 export default Layout;

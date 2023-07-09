@@ -64,6 +64,10 @@ class Logic {
     takeCardFromLayout(col: number) {
         this.#lead.addLeads(this.#layout.takeCard(col));
     }
+
+    isEnd() {
+        return !this.#layout.isRemain() || !this.#stock.canDraw();
+    }
 }
 
 export default Logic;

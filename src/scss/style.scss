@@ -99,3 +99,30 @@ body {
         font-weight: 800;
     }
 }
+
+dialog {
+    width: 30vw;
+    height: 30vh;
+    border-radius: 15px;
+    opacity: 0.8;
+    .dialog-container {
+        display: flex;
+        flex-direction: column;
+        .dialog-message {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+        .dialog-buttons {
+            margin: 3px;
+            display: flex;
+            justify-content: space-around;
+            button {
+                font-size: 1.3rem;
+                padding: 5px;
+            }
+        }
+    }
+}

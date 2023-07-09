@@ -20,6 +20,10 @@ class Controller {
             this.#view.update();
         }
     }
+
+    handleClickRetryButton() {
+        this.#view.retry();
+    }
 }
 
 export default Controller;

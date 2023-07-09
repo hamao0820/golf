@@ -37,6 +37,10 @@ class Model {
     canTake(col: number) {
         return this.#logic.canTake(col);
     }
+
+    isEnd() {
+        return this.#logic.isEnd();
+    }
 }
 
 export default Model;

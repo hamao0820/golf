@@ -24,8 +24,20 @@ class Logic {
     }
 
     start() {
-        new View();
+        this.init();
+        new View(this);
         return;
+    }
+
+    init() {
+        this.#deck = new Deck();
+        const columns = Array.from(
+            { length: Layout.ColumnNum },
+            () => new Column(Array.from({ length: Column.CardsNum }, () => this.#deck.handOutCard())),
+        );
+        this.#layout = new Layout(columns);
+        this.#stock = new Stock(Array.from(this.#deck.getCards()));
+        this.#lead = new Lead(this.#stock.drawCard());
     }
 
     execute() {

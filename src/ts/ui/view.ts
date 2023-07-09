@@ -1,3 +1,4 @@
+import Logic from '../logic/logic';
 import Card from '../tools/card';
 import Controller from './controller';
 import Model from './model';
@@ -13,8 +14,8 @@ class View {
     #stockBlock: HTMLDivElement;
     #leadBlock: HTMLDivElement;
 
-    constructor() {
-        this.#model = new Model();
+    constructor(logic: Logic) {
+        this.#model = new Model(logic);
         this.#controller = new Controller(this, this.#model);
 
         this.#messageDialog = document.createElement('dialog');

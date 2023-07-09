@@ -25,7 +25,7 @@ class View {
         this.#stockView = new StockView(this.#model, this.#controller);
         this.#leadView = new LeadView(this.#model, this.#controller);
         this.#dialogView = new DialogView(this.#model, this.#controller);
-        
+
         this.display();
     }
 

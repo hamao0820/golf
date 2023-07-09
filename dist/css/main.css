@@ -1,0 +1,107 @@
+/*!******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/scss/style.scss ***!
+  \******************************************************************************************************************************************/
+body {
+  background-color: beige;
+  user-select: none; }
+
+.layout {
+  height: 450px;
+  display: flex;
+  justify-content: space-around; }
+  .layout .column {
+    margin: 5px 0; }
+    .layout .column .card {
+      position: relative;
+      background-color: white; }
+      .layout .column .card:nth-child(n + 2) {
+        margin: -50px 0 0 0; }
+      .layout .column .card:last-child {
+        cursor: pointer; }
+
+.play-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px; }
+
+.stock {
+  height: 120px;
+  width: 120px;
+  margin-left: 0 50px 0;
+  border: 1px solid #000;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: khaki; }
+  .stock .stock-pile {
+    height: 100px;
+    width: 80px;
+    position: relative; }
+  .stock .card {
+    position: absolute;
+    border-width: 1.5px 1.5px 0.9px 0.5px;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: repeating-linear-gradient(45deg, #3cb371 0, #3cb371 10px, white 10px, white 20px); }
+    .stock .card:last-child {
+      cursor: pointer; }
+    .stock .card p {
+      margin: 5px 3px;
+      font-size: 1.05rem;
+      background-color: #fff;
+      color: red; }
+
+.lead {
+  height: 120px;
+  width: 120px;
+  margin: 0 50px 0;
+  border: 1px solid #000;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: khaki; }
+  .lead .lead-pile {
+    height: 100px;
+    width: 80px; }
+  .lead .card {
+    background: #fff; }
+
+.card {
+  height: 100px;
+  width: 80px;
+  border: 1.5px solid #000;
+  border-radius: 10%;
+  text-align: center; }
+  .card p {
+    margin: 5px 3px; }
+  .card .card-rank {
+    font-size: 1.3rem;
+    font-weight: 800; }
+
+dialog {
+  width: 30vw;
+  height: 30vh;
+  border-radius: 15px;
+  opacity: 0.8; }
+  dialog .dialog-container {
+    display: flex;
+    flex-direction: column; }
+    dialog .dialog-container .dialog-message {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem; }
+    dialog .dialog-container .dialog-buttons {
+      margin: 3px;
+      display: flex;
+      justify-content: space-around; }
+      dialog .dialog-container .dialog-buttons button {
+        font-size: 1.3rem;
+        padding: 5px; }
+

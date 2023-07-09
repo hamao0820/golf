@@ -92,7 +92,7 @@ class View {
         this.#leadBlock.appendChild($leadPile);
     }
 
-    displayDialog(message: string) {
+    private displayDialog(message: string) {
         const $container = document.createElement('div');
         $container.classList.add('dialog-container');
         $container.style.width = '100%';
@@ -115,11 +115,11 @@ class View {
         document.body.appendChild(this.#messageDialog);
     }
 
-    openDialog() {
+    private openDialog() {
         this.#messageDialog.showModal();
     }
 
-    closeDialog() {
+    private closeDialog() {
         this.#messageDialog.close();
     }
 
@@ -146,7 +146,7 @@ class View {
         }
     }
 
-    clear() {
+    private clear() {
         document.body.innerHTML = '';
         this.#gameBlock = document.createElement('div');
         this.#layoutBlock = document.createElement('div');

@@ -1,3 +1,4 @@
 node_modules
 design/*.png
 dist
+.DS_store

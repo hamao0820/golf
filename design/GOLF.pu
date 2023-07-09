@@ -1,64 +1,77 @@
 @startuml GOLF
 
 package "mian" {
-    class Main(){
+    class Main{
         +main(): void
     }
 }
 
 package "logic" {
     class Logic {
-        -player: Player
         -stock: Stock
         -layout: Layout
         -lead: Lead
         -deck: Deck
         +start(): void
-        +finish(): void
-        +isEnd(): void
-        +restart(): void
-        +processLoop(): void
+        +excute(): void
+        +isEnd(): bool
+        +isWin(): bool
+        +isLose(): bool
+        +getLayoutSize(): int
+        +getLayout(): Column[]
+        +getStock(): Card[]
+        +getStockSize(): int
+        +getLead(): Card[]
+        +drawCardFromStock(): void
+        +canTake(col: int): bool
+        +takeCardFromLayout(col: int): void
     }
-}
 
-package "player" {
-  class Player {
-    +drawCardFromStock(): void
-    +takeCardFromLayout(): void
-  }
+    class Judger {
+        {static} canTake(lead: Lead, target: Card): bool
+    }
 }
 
 package "tools" {
     ' カード
     class Card {
-        -number: int
+        -rank: Rank
         -isFaceUp: bool
-        -suit: string
-        +card(number: int, suit: string): void
-        +isFlip(): bool
-        +getNumber(): number
+        -suit: Suit
+        +card(rank: Rank, suit: Suit): void
+        +rank(): Rank
+        +suit(): Suit
+        +isFaceUp: bool
+        +faceUp(): void
     }
     ' 山札
     class Stock {
         -cards: Card[]
         +stock(): void
         +drawCard(): Card
-        +getSize(): int
+        +size(): int
+        +getStock: Card[]
     }
     ' 列
     class Column {
+        {static} CardsNum: int
         -cards: Card[]
-        +Column(cards: Card[]): void
+        +column(cards: Card[]): void
         +takeCard(): Card
-        +getSize(): int
+        +size(): int
         +canTake(): bool
+        +getLastCard(): Card
     }
     ' 場札
     class Layout {
+        {static} ColumnNum
         -columns: Column[]
-        +layout(): void
-        +getSize(): int
-        +takeCard(): int
+        +size(): int
+        +canTake(): bool
+        +takeCard(): Card
+        +getLayout(): Column[]
+        +getLastCard(): Card
+        +isRemain: bool
     }
     ' 台札
     class Lead {
@@ -75,50 +88,66 @@ package "tools" {
     }
 }
 
-package "judgement" {
-    class Judger {
-        +checkWin(): bool
-        +checkLoss(): bool
-        +canTake(): bool
-    }
-}
-
 package "ui" {
     class Model {
+        -logic: Logic
+        getLayoutSize(): int
+        +getLayout(): Column[]
+        +getStock(): Card[]
+        +getStockSize():int
+        +getLead():Card
+        +drawCardFromStock(): void
+        +takeCardFromLayout(col: int): void
+        +canTake(col: number): bool
+        +isEnd(): bool
+        +isWin(): bool
+        +isLose(): bool
+        +retry(): void
     }
     class View {
         -model: Model
         -controller: Controller
-        +displayStartScreen(): void
-        +displayGameScreen(): void
-        +displayEndScreen(): void
-        +updateLayout(): void
-        +updateStock(): void
-        +updateLead(): void
+        -messageDialog: HTMLDialogElemnt
+        -gameBlock: HTMLDivElement
+        -layoutBlock: HTMLDivElement
+        -stockBlock: HTMLDivElement
+        -leadBlock: HTMLDivElement
+        +view(): void
+        -createCardFrame(): HTMLDivElement
+        -createFaceUpCard(card: Card): HTMLDivElement
+        -displayLayout(): void
+        -displayStock(): void
+        -displayLead(): void
+        -displayDialog(message: string)
+        -openDialog(): void
+        -closeDialog(): void
+        -display(): void
+        +clear(): void
         +update(): void
-        +showMessage(message: string): void
     }
     class Controller {
-            -model: Model
-            +handleStartGame(): void
-            +handleRestartGame(): void
-            +handleDrawCardFromStock(): void
-            +handleTakeCardFromLead(columnIndex: int): void
+        -view: View
+        -model: Model
+        +handleClickStock(): void
+        +handleClickLayout(column: int): void
+        +handleClickRetryButton(): void
     }
 }
 
+Main o- Logic
 Deck o-- Card
 Stock o-- Card
 Lead o-- Card
 Column o-- Card
 Layout o-- Column
-Logic o-- player
-Logic o-- Deck
-Logic o-- Stock
-Logic o-- Lead
-Logic o-- Layout
-Controller o-- Model
+Logic o- Deck
+Logic o- Stock
+Logic o- Lead
+Logic o- Layout
+Controller o- Model
+Controller o- View
 View o-- Model
 View o- Controller
+Model o- Logic
 
 @enduml

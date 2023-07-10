@@ -1,6 +1,7 @@
 import Logic from '../../logic/logic';
 import Controller from '../controller';
 import Model from '../model';
+import AudioManager from './audioManager';
 import DialogView from './dialogView';
 import LayoutView from './layoutView';
 import LeadView from './leadView';
@@ -39,6 +40,8 @@ class View {
         document.body.appendChild(this.#gameBlock);
         this.#dialogView.display(document.body);
         if (this.#model.isWin() || this.#model.isLose()) this.#dialogView.open();
+        if (this.#model.isWin()) AudioManager.playSuccessSoundEffect();
+        if (this.#model.isLose()) AudioManager.playFailsSoundEffect();
     }
 
     clear() {
@@ -53,6 +56,29 @@ class View {
     update() {
         this.clear();
         this.display();
+    }
+
+    async flipStock(e: MouseEvent): Promise<void> {
+        this.#stockView.flipCard(e);
+        return new Promise<void>((resolve) => {
+            setTimeout(resolve, StockView.flipDelay * 1000);
+        });
+    }
+
+    slideCardFromStockToLead(): Promise<void> {
+        const to = this.#leadView.getPosition();
+        this.#stockView.slideCard(to);
+        return new Promise<void>((resolve) => {
+            setTimeout(resolve, StockView.slideDelay * 1000);
+        });
+    }
+
+    slideCardFromLayoutToLead(column: number): Promise<void> {
+        const to = this.#leadView.getPosition();
+        this.#layoutView.slideCard(column, to);
+        return new Promise<void>((resolve) => {
+            setTimeout(resolve, LayoutView.slideDelay * 1000);
+        });
     }
 }
 

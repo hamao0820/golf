@@ -14,8 +14,8 @@ class Model {
         return this.#logic.getLayoutColumns();
     }
 
-    getStock() {
-        return this.#logic.getStockCards();
+    getStockTopCard() {
+        return this.#logic.getStockTopCard();
     }
 
     getStockSize() {

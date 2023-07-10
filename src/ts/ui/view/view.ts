@@ -54,6 +54,13 @@ class View {
         this.clear();
         this.display();
     }
+
+    async flipStock(e: MouseEvent) {
+        this.#stockView.flipCard(e);
+        return new Promise<void>((resolve) => {
+            setTimeout(resolve, StockView.flipDelay * 1000);
+        });
+    }
 }
 
 export default View;

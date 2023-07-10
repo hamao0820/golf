@@ -24,6 +24,10 @@ class Stock {
     getCards() {
         return this.#cards;
     }
+
+    getTopCard() {
+        return this.#cards[this.size - 1];
+    }
 }
 
 export default Stock;

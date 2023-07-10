@@ -81,16 +81,20 @@ body {
     }
     .card {
         position: absolute;
-        border-width: 1.5px 1.5px 0.9px 0.5px;
-        border-style: solid;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background: repeating-linear-gradient(45deg, #3cb371 0, #3cb371 10px, white 10px, white 20px);
+        backface-visibility: hidden;
+        perspective: 500px;
+        &:not(.face-up) {
+            border-width: 1.5px 1.5px 0.9px 0.5px;
+            border-style: solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: repeating-linear-gradient(45deg, #3cb371 0, #3cb371 10px, white 10px, white 20px);
+        }
         &:last-child {
             cursor: pointer;
         }
-        p {
+        p.remain {
             margin: 5px 3px;
             font-size: 1.05rem;
             background-color: #fff;
@@ -113,9 +117,6 @@ body {
         height: 100px;
         width: 80px;
     }
-    .card {
-        background: #fff;
-    }
 }
 
 .card {
@@ -124,6 +125,7 @@ body {
 
     border: 1.5px solid #000;
     border-radius: 10%;
+    background: #fff;
 
     text-align: center;
     p {

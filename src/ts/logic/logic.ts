@@ -53,8 +53,8 @@ class Logic {
         return this.#layout.getColumns();
     }
 
-    getStockCards() {
-        return this.#stock.getCards();
+    getStockTopCard() {
+        return this.#stock.getTopCard();
     }
 
     getStockSize() {

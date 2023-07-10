@@ -9,7 +9,8 @@ class Controller {
         this.#model = model;
     }
 
-    handleClickStock() {
+    async handleClickStock(e: MouseEvent) {
+        await this.#view.flipStock(e);
         this.#model.drawCardFromStock();
         this.#view.update();
     }

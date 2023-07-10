@@ -4,6 +4,7 @@ import AbstractView from './abstractView';
 import CardElement from './cardView';
 
 class LayoutView extends AbstractView {
+    static readonly slideDelay = 0.5;
     #layoutBlock: HTMLDivElement;
     constructor(model: Model, controller: Controller) {
         super(model, controller);
@@ -30,6 +31,14 @@ class LayoutView extends AbstractView {
     clear(): void {
         this.#layoutBlock = document.createElement('div');
         this.#layoutBlock.classList.add('layout');
+    }
+    slideCard(column: number, to: [number, number]) {
+        const $card = this.#layoutBlock.children[column].children[
+            this.#layoutBlock.children[column].children.length - 1
+        ] as HTMLDivElement;
+        const from = [$card.getBoundingClientRect().left, $card.getBoundingClientRect().top] as const;
+        $card.style.transform = `translate(${to[0] - from[0]}px, ${to[1] - from[1]}px)`;
+        $card.style.transition = `transform ${LayoutView.slideDelay}s ease`;
     }
 }
 

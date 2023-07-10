@@ -16,8 +16,9 @@ class Controller {
         this.#view.update();
     }
 
-    handleClickLayout(column: number) {
+    async handleClickLayout(column: number) {
         if (this.#model.canTake(column)) {
+            await this.#view.slideCardFromLayoutToLead(column);
             this.#model.takeCardFromLayout(column);
             this.#view.update();
         }

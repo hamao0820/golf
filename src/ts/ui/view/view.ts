@@ -69,6 +69,14 @@ class View {
             setTimeout(resolve, StockView.slideDelay * 1000);
         });
     }
+
+    slideCardFromLayoutToLead(column: number): Promise<void> {
+        const to = this.#leadView.getPosition();
+        this.#layoutView.slideCard(column, to);
+        return new Promise<void>((resolve) => {
+            setTimeout(resolve, LayoutView.slideDelay * 1000);
+        });
+    }
 }
 
 export default View;

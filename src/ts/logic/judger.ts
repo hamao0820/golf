@@ -59,8 +59,8 @@ class Judger {
             !stock.canDraw() &&
             Array(Layout.ColumnNum)
                 .fill(0)
-                .map((_, i) => layout.canTake(i) && Judger.isAdjacent(lead, layout.getLastCard(i)))
-                .every((b) => !b)
+                .map((_, i) => layout.canTake(i) && !Judger.isAdjacent(lead, layout.getLastCard(i)))
+                .some((v) => v)
         );
     }
 

@@ -4,8 +4,8 @@ import AbstractView from './abstractView';
 import CardElement from './cardView';
 
 class StockView extends AbstractView {
-    static readonly flipDelay = 0.7;
-    static readonly slideDelay = 0.3;
+    static readonly flipDelay = 0.5;
+    static readonly slideDelay = 0.2;
     #$stockBlock: HTMLDivElement;
     #$stockPile: HTMLDivElement;
     constructor(model: Model, controller: Controller) {

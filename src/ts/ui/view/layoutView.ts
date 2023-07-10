@@ -4,7 +4,7 @@ import AbstractView from './abstractView';
 import CardElement from './cardView';
 
 class LayoutView extends AbstractView {
-    static readonly slideDelay = 0.5;
+    static readonly slideDelay = 0.3;
     #layoutBlock: HTMLDivElement;
     constructor(model: Model, controller: Controller) {
         super(model, controller);

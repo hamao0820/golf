@@ -5,6 +5,7 @@ import CardElement from './cardView';
 
 class StockView extends AbstractView {
     static readonly flipDelay = 0.7;
+    static readonly slideDelay = 0.3;
     #$stockBlock: HTMLDivElement;
     #$stockPile: HTMLDivElement;
     constructor(model: Model, controller: Controller) {
@@ -51,6 +52,13 @@ class StockView extends AbstractView {
             $faceUpCard.style.transform = 'rotateY(0)';
         }, 0);
         $card.style.transform = 'rotateY(-180deg)';
+    }
+
+    slideCard(to: [number, number]) {
+        const $card = this.#$stockPile.children[this.#$stockPile.children.length - 1] as HTMLElement;
+        const from = [$card.getBoundingClientRect().left, $card.getBoundingClientRect().top] as const;
+        $card.style.transform = `translate(${to[0] - from[0]}px, ${to[1] - from[1]}px)`;
+        $card.style.transition = `transform ${StockView.slideDelay}s ease`;
     }
 }
 

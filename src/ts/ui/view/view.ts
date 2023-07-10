@@ -55,10 +55,18 @@ class View {
         this.display();
     }
 
-    async flipStock(e: MouseEvent) {
+    async flipStock(e: MouseEvent): Promise<void> {
         this.#stockView.flipCard(e);
         return new Promise<void>((resolve) => {
             setTimeout(resolve, StockView.flipDelay * 1000);
+        });
+    }
+
+    slideCardFromStockToLead(): Promise<void> {
+        const to = this.#leadView.getPosition();
+        this.#stockView.slideCard(to);
+        return new Promise<void>((resolve) => {
+            setTimeout(resolve, StockView.slideDelay * 1000);
         });
     }
 }

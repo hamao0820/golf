@@ -11,6 +11,7 @@ class Controller {
 
     async handleClickStock(e: MouseEvent) {
         await this.#view.flipStock(e);
+        await this.#view.slideCardFromStockToLead();
         this.#model.drawCardFromStock();
         this.#view.update();
     }

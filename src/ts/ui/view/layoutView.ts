@@ -19,6 +19,7 @@ class LayoutView extends AbstractView {
                 const $card = CardElement.createFaceUpCard(card);
                 $card.style.zIndex = String(j);
                 if (j === column.size - 1) $card.addEventListener('click', () => this.controller.handleClickLayout(i));
+                if (this.model.canTake(i) && j === column.size - 1) $card.classList.add('shine');
                 $column.appendChild($card);
             });
             this.#layoutBlock.appendChild($column);

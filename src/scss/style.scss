@@ -12,13 +12,48 @@ body {
         .card {
             position: relative;
             background-color: white;
+            overflow: hidden;
             &:nth-child(n + 2) {
                 margin: -50px 0 0 0;
             }
             &:last-child {
                 cursor: pointer;
             }
+            &.shine {
+                box-shadow: 0 0 15px 1px rgba(0, 255, 238, 0.7);
+                &::after {
+                    content: '';
+                    height: 100%;
+                    width: 30px;
+                    position: absolute;
+                    top: -180px;
+                    left: 0;
+                    background-color: #fff;
+                    opacity: 0;
+                    -webkit-transform: rotate(45deg);
+                    -webkit-animation: reflection 3s ease-in-out infinite;
+                }
+            }
         }
+    }
+}
+
+@keyframes reflection {
+    0% {
+        -webkit-transform: scale(0) rotate(45deg);
+        opacity: 0;
+    }
+    80% {
+        -webkit-transform: scale(0) rotate(45deg);
+        opacity: 0.5;
+    }
+    81% {
+        -webkit-transform: scale(4) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(50) rotate(45deg);
+        opacity: 0;
     }
 }
 

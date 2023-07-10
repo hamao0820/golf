@@ -1,6 +1,7 @@
 import Logic from '../../logic/logic';
 import Controller from '../controller';
 import Model from '../model';
+import AudioManager from './audioManager';
 import DialogView from './dialogView';
 import LayoutView from './layoutView';
 import LeadView from './leadView';
@@ -39,6 +40,8 @@ class View {
         document.body.appendChild(this.#gameBlock);
         this.#dialogView.display(document.body);
         if (this.#model.isWin() || this.#model.isLose()) this.#dialogView.open();
+        if (this.#model.isWin()) AudioManager.playSuccessSoundEffect();
+        if (this.#model.isLose()) AudioManager.playFailsSoundEffect();
     }
 
     clear() {

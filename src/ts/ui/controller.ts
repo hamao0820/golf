@@ -1,4 +1,5 @@
 import Model from './model';
+import AudioManager from './view/audioManager';
 import View from './view/view';
 
 class Controller {
@@ -10,6 +11,7 @@ class Controller {
     }
 
     async handleClickStock(e: MouseEvent) {
+        AudioManager.playFlipSoundEffect();
         await this.#view.flipStock(e);
         await this.#view.slideCardFromStockToLead();
         this.#model.drawCardFromStock();
@@ -18,6 +20,7 @@ class Controller {
 
     async handleClickLayout(column: number) {
         if (this.#model.canTake(column)) {
+            AudioManager.playSelectSoundEffect();
             await this.#view.slideCardFromLayoutToLead(column);
             this.#model.takeCardFromLayout(column);
             this.#view.update();
@@ -25,6 +28,7 @@ class Controller {
     }
 
     handleClickRetryButton() {
+        AudioManager.playSceneChangeSoundEffect();
         this.#view.clear();
         this.#model.retry();
     }
